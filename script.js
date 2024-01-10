@@ -128,3 +128,179 @@
 //     promptNumberOne * promptNumberTwo
 //   } Division: ${promptNumberOne / promptNumberTwo}`
 // );
+
+//## Miniräknare
+
+// Okej, nu är det dags att programmera en ordentlig, fast enkel miniräknare i JavaScript. Nedan kommer instruktionerna. Ni behöver som alltid en index.html och en index.js som måste vara ihopkopplade.
+
+// 1. Skapa en prompt som frågar om ett valfritt tal. Spara undan i en variabel.
+// alert("This is a calculator")
+// const firstNumber = prompt("input a number");
+
+// 2. Skapa en prompt till som frågar om ett annat tal. Spara i en variabel.
+// const secondNumber = prompt("input another number");
+
+// 3. Skapa ny en tredje prompt som frågar vilket räknesätt användare vill använda. Det bör framgå att endast +, -, \* och / är möjliga. Denna ska också sparas i en variabel.
+// const calculations = prompt(
+//   "input the type of calculation, only(+, -, /, *) are available"
+//   );
+//   alert("Check console for calculations")
+
+// 4. Skapa en if-else-if check där du checkar de olika alternativen. Till exempel. Om räknesättet är lika med addition, så ska en addition utföras mellan de två talen och en alert ska poppa upp och redovisa resultatet. Är det subtraktion som gäller så ska subtraktion ske mellan talen och så vidare.
+// if (calculations === "+") {
+//   console.log(firstNumber + secondNumber);
+// } else if (calculations === "-") {
+//   console.log(firstNumber - secondNumber);
+// } else if (calculations === "*") {
+//   console.log(firstNumber * secondNumber);
+// } else if (calculations === "/") {
+//   console.log(firstNumber / secondNumber);
+// 5. Inkludera en else i slutet som hanterar alla utfall, om till exempel räknesättet skrivs in fel så det inte känns igen eller liknande.
+// } else {
+//   console.log("not valid, input only one of (+, -, /, *)");
+// }
+// 6. Lägga gärna till lite skjyssta alerts innan och efter som hälsar en välkommen och säger hejdå och så.
+
+//Functions
+// #### Greeting
+
+// const greeting = () => {
+//     console.log("Hello there my friend!");
+// }
+
+// #### Greeting with name
+
+// const greeting = (name) => {
+//     console.log("Hello there my friend!, You must be " + name);
+// }
+
+// #### Addition
+
+// const addition = (num1, num2) => {
+//   return num1 + num2;
+// };
+// const addResult = addition(1, 2);
+// console.log(addResult);
+
+// #### Division
+
+// function division(a, b) {
+//   if ( b === 0) {
+//     console.log("division by zero not allowed");
+//     return
+//   } else {
+//     return a / b;
+//   }
+// }
+
+// const divResult = division(1 , 0)
+// console.log(divResult);
+
+// #### Area
+
+// const area = (l, w) => {
+//   return `the area of the box is ${
+//     l * w
+//   } meters2 : length: ${l} and width: ${w}`;
+// };
+
+// const areaResult = area(20, 100);
+// console.log(areaResult);
+
+// #### Greeting with name again
+
+// const anotherGreeting = (fName, lName) => {
+//     return `'Hello ${fName} ${lName} how are you doing?`
+// }
+
+// const nameGreeting = anotherGreeting("Abbas", "Mansoori")
+// console.log(nameGreeting);
+
+// #### Distance converter
+
+// kilometersToMiles = (k) => {
+//     return m = k * 0.6214
+// }
+
+// const conversion = kilometersToMiles(20)
+
+// console.log(conversion)
+
+// #### Temperature converter
+
+// const celctoFahrenheit = (celsius) => {
+
+//     const farenheit = celsius * (9 / 5) + 32
+//     return farenheit
+// }
+
+// const conversionDegrees = celctoFahrenheit(23)
+// console.log(conversionDegrees);
+
+// #### Mean value _(Needs knowledge of Arrays)_
+
+// const average = (arr) => {
+//   let avg = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//    avg += arr[i]
+//   }
+//   return avg / arr.length
+// };
+
+// const mean = average([2, 4, 2, 4]);
+// console.log(mean);
+
+// #### Systembolaget
+
+// const systembolaget = (age) => {
+//   if (age >= 0 && age <= 14) {
+//     console.log("Get out of here");
+//   } else if (age >= 15 && age <= 17) {
+//     console.log("Sorry, you are not old enough");
+//   } else if (age >= 18 && age <= 19) {
+//     console.log(
+//       "Sorry, you must be at least 20. Why don't you try a bar instead?"
+//     );
+//   } else if (age >= 20 && age <= 80) {
+//     console.log("Thank you! Welcome!");
+//   } else if (age > 80) {
+//     console.log("I'm sorry, where is your caretaker?");
+//   } else {
+//     console.log("Invalid age entered.");
+//   }
+// };
+
+// systembolaget(55);
+
+// #### Sum _(Needs knowledge of Arrays)_
+
+// const sumOfArr = (array) => {
+//     let result = 0
+//     array.forEach(num => {
+//         result += num
+//     });
+//     return result;
+// };
+// const res = sumOfArr([1,2,3,4,5,6,7,8,9,10])
+
+// console.log(res);
+
+// #### List a persons' skills _(Needs knowledge of Objects)_
+
+// const person = {
+//   name: "Tom",
+//   age: 35,
+//   city: "Stockholm",
+//   skills: [
+//     "Pokemon Master",
+//     "Kung Fu Legend",
+//     "Football Ninja",
+//     "Master of towers",
+//     "Keeper of balls",
+//   ],
+// };
+
+// const listSkills = (p) => {
+//     console.log(p.skills);
+// }
+// listSkills(person)
