@@ -2,7 +2,7 @@
 
 Denna uppgift går ut på att skapa olika typer av object-literals (som vi i framtiden endast kommer att kalla för OBJEKT för enkelhetens skull). Ni ska skapa en skola, som kommer att innehålla lärare som undervisar i kurser som läses utav studenter, så lite olika objekt innehållandes olika typer av data och även funktioner för att de olika typer av objekt ska kunna interagera med varandra. Det blir en rätt lång js-fil som ni får skriva men det får ni bara acceptera. Glöm inte att alla variablerna måste ligga högst upp i filen för att de ska vara tillgänglig för all kod nedanför. Övningen är mest till för att ni ska vänja er med syntaxen och bekanta er med styrkorna med objekt! Det här blir även en naturlig förberedels för objektorienterad programmering.
 
-1. Börja med att skapa en skola som ett objekt. Objektet ska existera innuti en variabel som ni namnger med skolans namn för att göra det simpel. Skolan ska innehålla egenskaperna: name, address, zipcode, city, students med värdet av en tom array och teachers som en tom array. Till exempel:
+1. Börja med att skapa en skola som ett objekt. Objektet ska existera innuti en variabel som ni namnger med skolans namn för att göra det simpelt. Skolan ska innehålla egenskaperna: name, address, zipcode, city, students med värdet av en tom array och teachers som en tom array. Till exempel:
 ```js
 let lexicon = {
 name: "lexicon",
