@@ -1,3 +1,17 @@
+//Grades
+let grades = {
+  entries: [],
+
+  addGrade: function (student, value, subject, comment) {
+    this.entries.push({
+      value: value,
+      subject: subject,
+      student: student,
+      comment: comment,
+      date: new Date(),
+    });
+  },
+};
 //subjects
 
 let math = {
@@ -266,3 +280,7 @@ const displayTeachers = displayAllTeachers();
 // console.log(displayStudents);
 // console.log(allStudentsEnlistedToSubject);
 // console.log(displayTeachers);
+alice.enlistToSubject(math);
+grades.addGrade(charlie, "A", history, "Charlie is a good student");
+grades.addGrade(bob, "F", history, "poor effort");
+console.log(grades);
