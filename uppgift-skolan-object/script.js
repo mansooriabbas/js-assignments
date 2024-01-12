@@ -191,45 +191,78 @@ const regularSchool = {
   },
 };
 
-// console.log(teacherJohnson);
-// console.log(math);
-
-// math.students.push(charlie);
-// console.log(math);
-
-// const addSubjectToTeacher = (subject, teacher) => {
-//   subject.teacher = teacher;
-//   teacher.subjects.push(subject);
-//   return teacher;
-// };
-
-// teacherJohnson.addSubject(history);
-// teacherSmith.addSubject(history);
-// // console.log(addSubjectToTeacher(history, teacherJohnson));
-
-// regularSchool.addTeacher(teacherJohnson);
-// regularSchool.addTeacher(teacherSmith);
-
-// // alice.enlistToSubject(math);
-
-// regularSchool.addStudent(bob);
-
-// math.addStudent(bob);
-
-// eva.enlistToSubject(math);
-// eva.quitSubject(math);
-
-// history.removeTeacher(teacherSmith);
-
-// regularSchool.relegateStudent(bob);
-// regularSchool.fireTeacher(teacherJohnson);
-
 function enlistStudentToSubject(subject, ...students) {
   students.forEach((student) => {
     subject.addStudent(student);
   });
 }
+function enlistStudentToSchool(school, ...students) {
+  students.forEach((student) => {
+    school.addStudent(student);
+  });
+}
+function addTeacherToSubject(subject, teacher) {
+  teacher.addSubject(subject);
+}
+function addTeacherToSchool(school, ...teachers) {
+  teachers.forEach((teacher) => {
+    school.addTeacher(teacher);
+  });
+}
+function addSubjectToStudent(subject, ...students) {
+  students.forEach((student) => {
+    student.enlistToSubject(subject);
+  });
+}
 
 enlistStudentToSubject(math, alice, bob, charlie, diana);
+enlistStudentToSchool(regularSchool, alice, bob, charlie, diana);
+addTeacherToSubject(english, teacherSmith);
+addTeacherToSubject(math, teacherJohnson);
+addTeacherToSchool(regularSchool, teacherJohnson, teacherSmith);
+addSubjectToStudent(history, alice, bob, charlie, diana);
 
-console.log(math);
+const displayAllStudents = () => {
+  const allStudents = [];
+  for (let student of regularSchool.students) {
+    allStudents.push(student);
+  }
+
+  return allStudents;
+};
+
+const displayAllSubjectsOfStudent = (student) => {
+  const allSubjects = [];
+  student.subjects.forEach((sub) => {
+    allSubjects.push(sub);
+  });
+  return allSubjects;
+};
+
+const displayAllStudentsEnlistedToSubject = (subject) => {
+  const allStudents = [];
+  subject.students.forEach((student) => {
+    allStudents.push(student);
+  });
+  return allStudents;
+};
+
+const displayAllTeachers = () => {
+  allTeachers = [];
+  regularSchool.teachers.forEach((teacher) => {
+    allTeachers.push(teacher);
+  });
+  return allTeachers;
+};
+
+const displayStudents = displayAllStudents();
+const allSubjectsOfStudents = displayAllSubjectsOfStudent(charlie);
+const allStudentsEnlistedToSubject = displayAllStudentsEnlistedToSubject(math);
+const displayTeachers = displayAllTeachers();
+// console.log(allSubjectsOfStudents);
+// console.log(regularSchool);
+// console.log(math);
+// console.log(english);
+// console.log(displayStudents);
+// console.log(allStudentsEnlistedToSubject);
+// console.log(displayTeachers);
