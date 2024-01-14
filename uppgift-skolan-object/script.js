@@ -3,13 +3,16 @@ let grades = {
   entries: [],
 
   addGrade: function (student, value, subject, comment) {
-    this.entries.push({
+    const newGrade = {
       value: value,
       subject: subject,
       student: student,
       comment: comment,
       date: new Date(),
-    });
+    }
+
+    this.entries.push(newGrade)
+    return newGrade
   },
 };
 //subjects
@@ -156,12 +159,11 @@ let teacherSmith = {
     });
     return allSubjects;
   },
-  addTeacherToSchool: function(...teachers) {
+  addTeacherToSchool: function (...teachers) {
     teachers.forEach((teacher) => {
       regularSchool.addTeacher(this);
     });
-  }
-  
+  },
 };
 
 let teacherJohnson = {
@@ -179,11 +181,9 @@ let teacherJohnson = {
     });
     return allSubjects;
   },
-  addTeacherToSchool: function(teacher) {
-    
-      regularSchool.addTeacher(teacher);
-   
-  }
+  addTeacherToSchool: function (teacher) {
+    regularSchool.addTeacher(teacher);
+  },
 };
 
 //students
@@ -338,3 +338,13 @@ const regularSchool = {
   },
 };
 
+const displayAllStudents = (...students) => {
+  const allStudents = [];
+  for (let student of students) {
+    allStudents.push(student);
+  }
+  return allStudents;
+};
+console.log(displayAllStudents(bob,charlie,diana,eva));
+const charlieGrade = grades.addGrade(charlie, "F", history, "good")
+console.log(charlieGrade);
