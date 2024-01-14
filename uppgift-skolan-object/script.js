@@ -31,6 +31,29 @@ let math = {
       }
     }
   },
+  displayAllSubjectsOfStudent: function (student) {
+    const allSubjects = [];
+    student.subjects.forEach((sub) => {
+      allSubjects.push(sub);
+    });
+    return allSubjects;
+  },
+
+  displayAllStudentsEnlistedToSubject: function (subject) {
+    const allStudents = [];
+    subject.students.forEach((student) => {
+      allStudents.push(student);
+    });
+    return allStudents;
+  },
+  addTeacherToSubject: function (teacher) {
+    teacher.addSubject(this);
+  },
+  addSubjectToStudent: function (...students) {
+    students.forEach((student) => {
+      student.enlistToSubject(this);
+    });
+  },
 };
 
 let english = {
@@ -49,6 +72,29 @@ let english = {
         }
       }
     }
+  },
+  displayAllSubjectsOfStudent: function (student) {
+    const allSubjects = [];
+    student.subjects.forEach((sub) => {
+      allSubjects.push(sub);
+    });
+    return allSubjects;
+  },
+
+  displayAllStudentsEnlistedToSubject: function (subject) {
+    const allStudents = [];
+    subject.students.forEach((student) => {
+      allStudents.push(student);
+    });
+    return allStudents;
+  },
+  addTeacherToSubject: function (teacher) {
+    teacher.addSubject(this);
+  },
+  addSubjectToStudent: function (...students) {
+    students.forEach((student) => {
+      student.enlistToSubject(this);
+    });
   },
 };
 
@@ -69,6 +115,29 @@ let history = {
       }
     }
   },
+  displayAllSubjectsOfStudent: function (student) {
+    const allSubjects = [];
+    student.subjects.forEach((sub) => {
+      allSubjects.push(sub);
+    });
+    return allSubjects;
+  },
+
+  displayAllStudentsEnlistedToSubject: function (subject) {
+    const allStudents = [];
+    subject.students.forEach((student) => {
+      allStudents.push(student);
+    });
+    return allStudents;
+  },
+  addTeacherToSubject: function (teacher) {
+    teacher.addSubject(this);
+  },
+  addSubjectToStudent: function (...students) {
+    students.forEach((student) => {
+      student.enlistToSubject(this);
+    });
+  },
 };
 
 //teachers
@@ -80,7 +149,19 @@ let teacherSmith = {
     this.subjects.push(subject); //this refers to the object that the method resides in, in this case,subjects is out of scope for addSubject method so we use the this keyword
     return (subject.teacher = this); //here, we are saying that the subject passed to the method will now have a reference to the teacher by binding the teacher object (this) to its teacher property
   },
-  fireTeacher: function () {},
+  displayAllSubjects: function () {
+    const allSubjects = [];
+    this.subjects.forEach((subject) => {
+      allSubjects.push(subject);
+    });
+    return allSubjects;
+  },
+  addTeacherToSchool: function(...teachers) {
+    teachers.forEach((teacher) => {
+      regularSchool.addTeacher(this);
+    });
+  }
+  
 };
 
 let teacherJohnson = {
@@ -90,6 +171,19 @@ let teacherJohnson = {
     this.subjects.push(subject);
     return (subject.teacher = this);
   },
+
+  displayAllSubjects: function () {
+    const allSubjects = [];
+    this.subjects.forEach((subject) => {
+      allSubjects.push(subject);
+    });
+    return allSubjects;
+  },
+  addTeacherToSchool: function(teacher) {
+    
+      regularSchool.addTeacher(teacher);
+   
+  }
 };
 
 //students
@@ -101,12 +195,16 @@ let alice = {
   subjects: [],
   enlistToSubject: function (subject) {
     this.subjects.push(subject);
+    subject.addStudent(this);
   },
   quitSubject: function (subject) {
     const index = this.subjects.indexOf(subject);
     if (index !== -1) {
       this.subjects.splice(index, 1);
     }
+  },
+  enlistStudentToSubject: function (subject) {
+    subject.addStudent(this);
   },
 };
 
@@ -117,12 +215,16 @@ let bob = {
   subjects: [],
   enlistToSubject: function (subject) {
     this.subjects.push(subject);
+    subject.addStudent(this);
   },
   quitSubject: function (subject) {
     const index = this.subjects.indexOf(subject);
     if (index !== -1) {
       this.subjects.splice(index, 1);
     }
+  },
+  enlistStudentToSubject: function (subject) {
+    subject.addStudent(this);
   },
 };
 
@@ -133,12 +235,16 @@ let charlie = {
   subjects: [],
   enlistToSubject: function (subject) {
     this.subjects.push(subject);
+    subject.addStudent(this);
   },
   quitSubject: function (subject) {
     const index = this.subjects.indexOf(subject);
     if (index !== -1) {
       this.subjects.splice(index, 1);
     }
+  },
+  enlistStudentToSubject: function (subject) {
+    subject.addStudent(this);
   },
 };
 
@@ -149,12 +255,16 @@ let diana = {
   subjects: [],
   enlistToSubject: function (subject) {
     this.subjects.push(subject);
+    subject.addStudent(this);
   },
   quitSubject: function (subject) {
     const index = this.subjects.indexOf(subject);
     if (index !== -1) {
       this.subjects.splice(index, 1);
     }
+  },
+  enlistStudentToSubject: function (subject) {
+    subject.addStudent(this);
   },
 };
 
@@ -165,12 +275,16 @@ let eva = {
   subjects: [],
   enlistToSubject: function (subject) {
     this.subjects.push(subject);
+    subject.addStudent(this);
   },
   quitSubject: function (subject) {
     const index = this.subjects.indexOf(subject);
     if (index !== -1) {
       this.subjects.splice(index, 1);
     }
+  },
+  enlistStudentToSubject: function (subject) {
+    subject.addStudent(this);
   },
 };
 
@@ -203,84 +317,24 @@ const regularSchool = {
       this.teachers.splice(teacherIndex);
     }
   },
+  displayAllStudents: function () {
+    const allStudents = [];
+    for (let student of this.students) {
+      allStudents.push(student);
+    }
+    return allStudents;
+  },
+  displayAllTeachers: function () {
+    allTeachers = [];
+    regularSchool.teachers.forEach((teacher) => {
+      allTeachers.push(teacher);
+    });
+    return allTeachers;
+  },
+  enlistStudentToSchool: function (...students) {
+    students.forEach((student) => {
+      this.addStudent(student);
+    });
+  },
 };
 
-function enlistStudentToSubject(subject, ...students) {
-  students.forEach((student) => {
-    subject.addStudent(student);
-  });
-}
-function enlistStudentToSchool(school, ...students) {
-  students.forEach((student) => {
-    school.addStudent(student);
-  });
-}
-function addTeacherToSubject(subject, teacher) {
-  teacher.addSubject(subject);
-}
-function addTeacherToSchool(school, ...teachers) {
-  teachers.forEach((teacher) => {
-    school.addTeacher(teacher);
-  });
-}
-function addSubjectToStudent(subject, ...students) {
-  students.forEach((student) => {
-    student.enlistToSubject(subject);
-  });
-}
-
-enlistStudentToSubject(math, alice, bob, charlie, diana);
-enlistStudentToSchool(regularSchool, alice, bob, charlie, diana);
-addTeacherToSubject(english, teacherSmith);
-addTeacherToSubject(math, teacherJohnson);
-addTeacherToSchool(regularSchool, teacherJohnson, teacherSmith);
-addSubjectToStudent(history, alice, bob, charlie, diana);
-
-const displayAllStudents = () => {
-  const allStudents = [];
-  for (let student of regularSchool.students) {
-    allStudents.push(student);
-  }
-
-  return allStudents;
-};
-
-const displayAllSubjectsOfStudent = (student) => {
-  const allSubjects = [];
-  student.subjects.forEach((sub) => {
-    allSubjects.push(sub);
-  });
-  return allSubjects;
-};
-
-const displayAllStudentsEnlistedToSubject = (subject) => {
-  const allStudents = [];
-  subject.students.forEach((student) => {
-    allStudents.push(student);
-  });
-  return allStudents;
-};
-
-const displayAllTeachers = () => {
-  allTeachers = [];
-  regularSchool.teachers.forEach((teacher) => {
-    allTeachers.push(teacher);
-  });
-  return allTeachers;
-};
-
-const displayStudents = displayAllStudents();
-const allSubjectsOfStudents = displayAllSubjectsOfStudent(charlie);
-const allStudentsEnlistedToSubject = displayAllStudentsEnlistedToSubject(math);
-const displayTeachers = displayAllTeachers();
-// console.log(allSubjectsOfStudents);
-// console.log(regularSchool);
-// console.log(math);
-// console.log(english);
-// console.log(displayStudents);
-// console.log(allStudentsEnlistedToSubject);
-// console.log(displayTeachers);
-alice.enlistToSubject(math);
-grades.addGrade(charlie, "A", history, "Charlie is a good student");
-grades.addGrade(bob, "F", history, "poor effort");
-console.log(grades);
