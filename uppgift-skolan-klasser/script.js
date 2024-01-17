@@ -43,6 +43,12 @@ class Subject {
       this.subject.splice(index, 1);
     }
   }
+  removeTeacher(teacher) {
+    if (this.teacher.includes(teacher)) {
+      const index = this.teacher.indexOf(teacher);
+      this.teacher.splice(index, 1);
+    }
+  }
 }
 
 class Student {
@@ -56,6 +62,13 @@ class Student {
     this.subjects.push(subject);
     subject.students.push(this);
     return this;
+  }
+  relegateStudents(subject, newSubject) {
+    if (this.subjects.includes(subject)) {
+      const index = this.subjects.indexOf(subject);
+      this.subjects.splice(index, 1);
+      this.subjects.push(newSubject);
+    }
   }
 }
 class Teacher {
@@ -98,5 +111,8 @@ nightcrawler.enlistToSubject(ams, nightcrawler);
 
 cyclops.enlistToSubject(ams);
 cyclops.enlistToSubject(whm);
-
-;
+xavierSchool.addTeacher(proffesorStorm);
+ams.removeTeacher(proffesorStorm);
+console.log(ams);
+nightcrawler.relegateStudents(ams, irt);
+console.log(nightcrawler);
