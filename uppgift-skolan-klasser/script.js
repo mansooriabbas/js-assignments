@@ -7,8 +7,15 @@ class School {
     this.students = [];
     this.teachers = [];
   }
+  addStudent(student) {
+    this.students.push(student);
+    student = this;
+    return this;
+  }
   addTeacher(teacher) {
     this.teachers.push(teacher);
+    teacher = this;
+    return this;
   }
 }
 
@@ -17,6 +24,24 @@ class Subject {
     this.name = name;
     this.students = [];
     this.teacher = [];
+  }
+  addTeacher(teacher) {
+    this.teacher.push(teacher);
+    teacher.subjects = this;
+  }
+  addStudent(student) {
+    this.students.push(student);
+    student.subjects = this;
+  }
+  quitSubject(student, subject) {
+    if (this.students.includes(student)) {
+      const index = this.students.indexOf(student);
+      this.students.splice(index, 1);
+    }
+    if (student.subjects.includes(subject)) {
+      const index = student.subjects.indexOf(subject);
+      this.subject.splice(index, 1);
+    }
   }
 }
 
@@ -27,15 +52,19 @@ class Student {
     this.gender = gender;
     this.subjects = [];
   }
+  enlistToSubject(subject) {
+    this.subjects.push(subject);
+    subject.students.push(this);
+    return this;
+  }
 }
-
 class Teacher {
   constructor(name) {
     this.name = name;
     this.subjects = [];
   }
 
-  addSubjectToTeacher(subject) {
+  addSubject(subject) {
     this.subjects.push(subject);
     subject.teacher = this;
     return this;
@@ -62,16 +91,12 @@ const shadowCat = new Student("Katheryn Anne Pride", 20, "female");
 
 const proffesorX = new Teacher("Charles Xavier");
 const proffesorStorm = new Teacher("Ororo Munroe");
-xavierSchool.addTeacher(proffesorStorm);
-// function addSubjectToTeacher(subject, teacher) {
-//   teacher.subjects.push(subject);
-//   subject.teacher = teacher;
-//   return teacher;
-// }
 
-proffesorX.addSubjectToTeacher(whm, proffesorX);
+ams.addTeacher(proffesorStorm);
+proffesorX.addSubject(whm, proffesorX);
+nightcrawler.enlistToSubject(ams, nightcrawler);
 
-console.log(proffesorX);
-console.log(whm);
-console.log(xavierSchool);
-console.log(proffesorStorm);
+cyclops.enlistToSubject(ams);
+cyclops.enlistToSubject(whm);
+
+;
