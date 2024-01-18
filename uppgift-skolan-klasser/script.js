@@ -7,7 +7,7 @@ class School {
     this.students = [];
     this.teachers = [];
   }
-  addStudent(student) {
+  addStudent(...student) {
     this.students.push(student);
     student = this;
     return this;
@@ -17,6 +17,14 @@ class School {
     teacher = this;
     return this;
   }
+  fireTeacher(teacher) {
+    if (this.teachers.includes(teacher)) {
+      const index = this.teachers.indexOf(teacher);
+      this.teachers.splice(index, 1);
+    }
+    teacher.subjects = [];
+    teacher.student = [];
+  }
 }
 
 class Subject {
@@ -24,6 +32,7 @@ class Subject {
     this.name = name;
     this.students = [];
     this.teacher = [];
+    
   }
   addTeacher(teacher) {
     this.teacher.push(teacher);
@@ -37,6 +46,7 @@ class Subject {
     if (this.students.includes(student)) {
       const index = this.students.indexOf(student);
       this.students.splice(index, 1);
+      
     }
     if (student.subjects.includes(subject)) {
       const index = student.subjects.indexOf(subject);
@@ -50,14 +60,27 @@ class Subject {
     }
   }
 }
-
+class Grade {
+  constructor(value, comment) {
+    this.value = value;
+    this.comment = comment || [];
+  }
+}
 class Student {
   constructor(name, age, gender) {
     this.name = name;
     this.age = age;
     this.gender = gender;
     this.subjects = [];
+    this.grades = {};
   }
+
+  setGrade(subject, value, comment) {
+    if(this.subjects.includes(subject)){
+      this.grades[subject.name] = new Grade(value, comment)
+    }
+  }
+
   enlistToSubject(subject) {
     this.subjects.push(subject);
     subject.students.push(this);
@@ -111,8 +134,43 @@ nightcrawler.enlistToSubject(ams, nightcrawler);
 
 cyclops.enlistToSubject(ams);
 cyclops.enlistToSubject(whm);
-xavierSchool.addTeacher(proffesorStorm);
-ams.removeTeacher(proffesorStorm);
 console.log(ams);
 nightcrawler.relegateStudents(ams, irt);
-console.log(nightcrawler);
+xavierSchool.addTeacher(proffesorX);
+xavierSchool.addTeacher(proffesorStorm);
+xavierSchool.fireTeacher(proffesorStorm);
+console.log(proffesorStorm);
+xavierSchool.addStudent(cyclops, phoenix, rogue, shadowCat);
+console.log(xavierSchool);
+
+//global functions
+const displayAllStudents = (school) => {
+  for (let student of school.students) {
+    console.log(student);
+  }
+};
+function displayAllSubjectsOfStudent(student) {
+  return student.subjects;
+}
+function displayAllStudentsEnlistedToSubject(subject) {
+  return subject.students;
+}
+function displayAllTeachers(school) {
+  for (let teacher of school.teachers) {
+    return teacher;
+  }
+}
+
+displayAllStudents(xavierSchool);
+
+const SubjectsOfStudent = displayAllSubjectsOfStudent(cyclops);
+console.log(SubjectsOfStudent);
+
+const studentsEnlistedToSubject = displayAllStudentsEnlistedToSubject(whm);
+console.log(studentsEnlistedToSubject);
+
+const allTeachers = displayAllTeachers(xavierSchool);
+console.log(allTeachers);
+
+cyclops.setGrade(ams, "A", "Cyclops is a good student")
+console.log(cyclops);
